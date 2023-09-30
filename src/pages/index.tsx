@@ -1,6 +1,5 @@
 import { Varela } from 'next/font/google'
 import Head from 'next/head'
-import Link from 'next/link'
 
 const varela = Varela({
     weight: '400',

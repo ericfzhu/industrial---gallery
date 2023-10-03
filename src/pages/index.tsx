@@ -19,7 +19,7 @@ export default function Home() {
   
     return (
         <main
-            className={`flex min-h-screen flex-col p-8 items-center`}
+            className={`flex min-h-screen flex-col p-8 items-center mx-10`}
         >
             <Head>
                 <title>Industrial Gallery</title>
@@ -36,28 +36,28 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <span
-                className={`text-black text-4xl font-bold pb-[100px] select-none w-full ${orbitron.className} flex justify-center`}
+                className={`text-black text-4xl font-bold pb-[100px] select-none w-full ${orbitron.className} flex justify-center sticky top-8`}
             >
                 Industrial Gallery
             </span>
-            <div id="gallery1" className="select-none pointer-events-none flex flex-row h-full aspect-[11/12]">
+            <div id="gallery1" className="select-none flex flex-row h-full aspect-[11/12]">
                 <div className="w-[58%]">
-                    <Image src="/data/Nayeon/IMG1.jpg" alt="Tomo" className="w-[95%] mx-auto" width="500" height="400"/>
+                    <Image src="/data/Nayeon/front.jpg" alt="Nayeon" className="w-[95%] mx-auto hover:opacity-80" width="500" height="400"/>
                     <div className="h-[23%] m-auto"/>
-                    <Image src="/data/Bear65V2/IMG1.jpg" alt="Bear65V2" className="w-[70%] h-auto mx-auto" width="500" height="400"/>
+                    <Image src="/data/Bear65V2/front.jpg" alt="Bear65V2" className="w-[70%] h-auto mx-auto hover:opacity-80" width="500" height="400"/>
                 </div>
                 <div className="w-[42%]">
                     <div className="h-[25%] w-full"/>
-                    <Image src="/data/JaneV2ME/IMG1.jpg" alt="Jane" className="w-[90%] h-auto mx-auto" width="500" height="400"/>
+                    <Image src="/data/JaneV2ME/front.jpg" alt="JaneV2ME" className="w-[90%] h-auto mx-auto hover:opacity-80" width="500" height="400"/>
                 </div>
             </div>
-            <div id="gallery1" className="select-none pointer-events-none flex flex-row h-full aspect-[11/12]">
+            <div id="gallery1" className="select-none flex flex-row h-full aspect-[11/12]">
                 <div className="w-[35%]">
                     <div className="h-[25%] w-full"/>
-                    <Image src="/data/VoiceMini/IMG1.jpg" alt="Jane" className="w-[90%] h-auto mx-auto" width="500" height="400"/>
+                    <Image src="/data/VoiceMini/front.jpg" alt="VoiceMini" className="w-[90%] h-auto mx-auto hover:opacity-80" width="500" height="400"/>
                 </div>
                 <div className="w-[65%]">
-                    <Image src="/data/Tomo/IMG1.jpg" alt="Tomo" className="w-[95%] mx-auto" width="500" height="400"/>
+                    <Image src="/data/Tomo/front.jpg" alt="Tomo" className="w-[95%] mx-auto hover:opacity-80" width="500" height="400"/>
                 </div>
             </div>
         </main>

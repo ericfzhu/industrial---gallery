@@ -42,7 +42,7 @@ export default function Home() {
             </span>
             <div id="gallery1" className="select-none flex flex-row h-full aspect-[11/12]">
                 <div className="w-[58%]">
-                    <Image src="/data/Nayeon/front.jpg" alt="Nayeon" className="w-[95%] mx-auto hover:opacity-80" width="500" height="400"/>
+                    <Image src="/data/Tomo/front.jpg" alt="Tomo" className="w-[95%] mx-auto hover:opacity-80" width="500" height="400"/>
                     <div className="h-[23%] m-auto"/>
                     <Image src="/data/Bear65V2/front.jpg" alt="Bear65V2" className="w-[70%] h-auto mx-auto hover:opacity-80" width="500" height="400"/>
                 </div>
@@ -51,7 +51,7 @@ export default function Home() {
                     <Image src="/data/JaneV2ME/front.jpg" alt="JaneV2ME" className="w-[90%] h-auto mx-auto hover:opacity-80" width="500" height="400"/>
                 </div>
             </div>
-            <div id="gallery1" className="select-none flex flex-row h-full aspect-[11/12]">
+            {/* <div id="gallery1" className="select-none flex flex-row h-full aspect-[11/12]">
                 <div className="w-[35%]">
                     <div className="h-[25%] w-full"/>
                     <Image src="/data/VoiceMini/front.jpg" alt="VoiceMini" className="w-[90%] h-auto mx-auto hover:opacity-80" width="500" height="400"/>
@@ -59,7 +59,7 @@ export default function Home() {
                 <div className="w-[65%]">
                     <Image src="/data/Tomo/front.jpg" alt="Tomo" className="w-[95%] mx-auto hover:opacity-80" width="500" height="400"/>
                 </div>
-            </div>
+            </div> */}
         </main>
     )
 }

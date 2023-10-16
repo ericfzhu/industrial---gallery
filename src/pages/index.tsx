@@ -42,7 +42,7 @@ export default function Home() {
             </span>
             <div className="fixed inset-0 flex items-center justify-center z-30">
                 <div className="bg-main/70 backdrop-filter backdrop-blur-sm rounded-full w-44 h-44 flex items-center justify-center">
-                <span className={`text-accent uppercase text-base text-center ${orbitron.className}`}>
+                <span className={`text-black uppercase text-base text-center ${orbitron.className}`}>
                     {'TOMO'}
                 </span>
                 </div>

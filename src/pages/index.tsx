@@ -74,7 +74,7 @@ export default function Home() {
                 <div className="absolute w-0.5 h-screen bg-main1 left-[15%]"/>
                 <div className="absolute w-0.5 h-screen bg-main1 right-[15%]"/>
 
-                <button className="bg-white backdrop-filter backdrop-blur-sm rounded-full w-44 h-44 flex items-center justify-center hover:brightness-110">
+                <button className="bg-main backdrop-filter backdrop-blur-sm rounded-full w-44 h-44 flex items-center justify-center hover:bg-white">
                     <span
                         className={`text-black uppercase text-base text-center ${orbitron.className}`}
                     >

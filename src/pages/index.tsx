@@ -88,7 +88,7 @@ export default function Home() {
                     <div
                         key={index}
                         id={`gallery${index}`}
-                        className="select-none h-screen w-screen flex items-center justify-center"
+                        className="select-none h-screen flex items-center justify-center"
                     >
                         <img
                             src={`/data/${gallery.name.replace(

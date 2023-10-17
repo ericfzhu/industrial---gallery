@@ -14,8 +14,11 @@ export default function Home() {
         { name: 'Bear65 V2', height: 'md:h-[70%]' },
         { name: 'Jane V2 ME', height: 'md:h-[90%]' },
         { name: 'Mode65', height: 'md:h-[80%]' },
+        { name: 'Nayeon', height: 'md:h-[80%]' },
         { name: 'Iron165 V2', height: 'md:h-[95]' },
-        // Add more galleries as needed
+        { name: 'HHKB Type-S', height: 'md:h-[70%]'},
+        { name: 'Dropbear', height: 'md:h-[75%]'},
+        { name: '852', height: 'md:h-[88%]'},
     ]
     
 

@@ -8,12 +8,7 @@ type DraggableItemProps = {
     src: string
 }
 
-export default function DraggableItem({
-    name,
-    x,
-    y,
-    src,
-}: DraggableItemProps) {
+export default function DraggableItem({ name, x, y, src }: DraggableItemProps) {
     const [position, setPosition] = useState<{ x: number; y: number }>({
         x: 0,
         y: 0,

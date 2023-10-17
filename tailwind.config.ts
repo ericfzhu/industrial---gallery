@@ -10,8 +10,8 @@ const config: Config = {
         extend: {
             colors: {
                 accent: '#EE6A20',
-                main: '#F5F4F0'
-            }
+                main: '#F5F4F0',
+            },
         },
     },
     plugins: [],

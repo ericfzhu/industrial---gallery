@@ -10,11 +10,11 @@ const orbitron = Orbitron({
 
 export default function Home() {
     const galleries = [
-        { name: 'Tomo', height: 'h-[60%]' },
-        { name: 'Bear65 V2', height: 'h-[70%]' },
-        { name: 'Jane V2 ME', height: 'h-[90%]' },
-        { name: 'Mode65', height: 'h-[80%]' },
-        { name: 'Iron165 V2', height: 'h-[95]' },
+        { name: 'Tomo', height: 'md:h-[60%]' },
+        { name: 'Bear65 V2', height: 'md:h-[70%]' },
+        { name: 'Jane V2 ME', height: 'md:h-[90%]' },
+        { name: 'Mode65', height: 'md:h-[80%]' },
+        { name: 'Iron165 V2', height: 'md:h-[95]' },
         // Add more galleries as needed
     ]
     
@@ -38,7 +38,7 @@ export default function Home() {
 
     useEffect(() => {
         checkCurrentDiv();
-        
+
         window.addEventListener('scroll', checkCurrentDiv)
 
         return () => {
@@ -67,8 +67,14 @@ export default function Home() {
             >
                 INDUSTRIAL GALLERY
             </span>
-            <div className="fixed inset-0 flex items-center justify-center z-30">
-                <button className="bg-main/70 backdrop-filter backdrop-blur-sm rounded-full w-44 h-44 flex items-center justify-center hover:brightness-110">
+            <div className="fixed inset-0 flex items-center justify-center z-10 w-screen h-screen">
+                <div className="absolute w-[500px] h-[500px] border-2 border-main1 rounded-full"/>
+                <div className="absolute w-0.5 h-screen bg-main1 left-1/2 transform -translate-x-1/2"/>
+                <div className="absolute w-screen h-0.5 bg-main1 top-1/2 transform -translate-y-1/2"/>
+                <div className="absolute w-0.5 h-screen bg-main1 left-[15%]"/>
+                <div className="absolute w-0.5 h-screen bg-main1 right-[15%]"/>
+
+                <button className="bg-white backdrop-filter backdrop-blur-sm rounded-full w-44 h-44 flex items-center justify-center hover:brightness-110">
                     <span
                         className={`text-black uppercase text-base text-center ${orbitron.className}`}
                     >

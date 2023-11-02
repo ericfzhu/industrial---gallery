@@ -1,7 +1,7 @@
 import { Orbitron } from 'next/font/google'
 import Head from 'next/head'
 import { useEffect, useRef, useState } from 'react'
-import Link from 'next/link'
+import keyboards from '@/components/keyboards.json';
 
 const orbitron = Orbitron({
     weight: '700',
@@ -93,8 +93,8 @@ export default function Home() {
             >
                 INDUSTRIAL GALLERY
             </span>
-            {/* 
-            <div className="fixed inset-0 flex items-center justify-center z-0 w-screen h-screen">
+            
+            {/* <div className="fixed inset-0 flex items-center justify-center z-0 w-screen h-screen">
                 <div className="absolute w-[500px] h-[500px] border-2 border-main1 rounded-full"/>
                 <div className="absolute w-0.5 h-screen bg-main1 left-1/2 transform -translate-x-1/2"/>
                 <div className="absolute w-screen h-0.5 bg-main1 top-1/2 transform -translate-y-1/2"/>
@@ -109,7 +109,7 @@ export default function Home() {
                 <img
                     src="/data/Tomo/front.jpg"
                     alt="tomo"
-                    className="md:h-[60%] hover:opacity-80"
+                    className="md:h-[60%]"
                     style={{
                         transform: `perspective(1000px) rotateY(${
                             tilt.x * 2
@@ -119,7 +119,7 @@ export default function Home() {
                 />
             </div>
 
-            <div className="absolute bottom-0 w-full flex justify-center mb-4">
+            <div className="absolute bottom-4 w-full flex justify-center mb-4">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="self-center stroke-accent"
@@ -140,9 +140,9 @@ export default function Home() {
             </div>
 
             <div className="w-full mt-8 min-h-[30vh]">
-                <div className="uppercase w-full border-collapse">
+                <div className="uppercase w-full border-collapse divide-y-[1px] divide-main1/50">
                     <div className="text-accent text-left">
-                        <div className='border-b flex flex-row'>
+                        <div className='flex flex-row'>
                             <div className="px-4 py-2 w-[20%]">Date</div>
                             <div className="px-4 py-2 w-[50%]">Name</div>
                             <div className="px-4 py-2 w-[30%]">
@@ -150,34 +150,15 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
-                    <div className="text-left hover:bg-main1/20">
-                        <div className='border-b flex flex-row'>
-                            <div className="px-4 py-2 w-[20%]">TBA</div>
-                            <div className="px-4 py-2 w-[50%]">tomo</div>
-                            <div className="px-4 py-2 w-[30%]">monokei, tgr</div>
+                    {keyboards.map((keyboard) => (
+                        <div className="text-left hover:bg-main1/20">
+                            <div className='flex flex-row'>
+                                <div className="px-4 py-2 w-[20%]">{keyboard.date}</div>
+                                <div className="px-4 py-2 w-[50%]">{keyboard.name}</div>
+                                <div className="px-4 py-2 w-[30%]">{keyboard.designer}</div>
+                            </div>
                         </div>
-                    </div>
-                    <div className="text-left hover:bg-main1/20">
-                        <div className='border-b flex flex-row'>
-                            <div className="px-4 py-2 w-[20%]">TBA</div>
-                            <div className="px-4 py-2 w-[50%]">nayeon</div>
-                            <div className="px-4 py-2 w-[30%]">Abats' Keyboard Club</div>
-                        </div>
-                    </div>
-                    <div className="text-left hover:bg-main1/20">
-                        <div className='border-b flex flex-row'>
-                            <div className="px-4 py-2 w-[20%]">TBA</div>
-                            <div className="px-4 py-2 w-[50%]">iron165 v2</div>
-                            <div className="px-4 py-2 w-[30%]">Smith and Rune</div>
-                        </div>
-                    </div>
-                    <div className="text-left hover:bg-main1/20">
-                        <div className='border-b flex flex-row'>
-                            <div className="px-4 py-2 w-[20%]">TBA</div>
-                            <div className="px-4 py-2 w-[50%]">sbl</div>
-                            <div className="px-4 py-2 w-[30%]">DN works</div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </main>

@@ -1,6 +1,7 @@
-import {  Orbitron } from 'next/font/google'
+import { Orbitron } from 'next/font/google'
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 
 const orbitron = Orbitron({
     weight: '700',
@@ -16,46 +17,67 @@ export default function Home() {
         { name: 'Mode65', height: 'md:h-[80%]' },
         { name: 'Nayeon', height: 'md:h-[80%]' },
         { name: 'Iron165 V2', height: 'md:h-[95]' },
-        { name: 'HHKB Type-S', height: 'md:h-[70%]'},
-        { name: 'Dropbear', height: 'md:h-[75%]'},
-        { name: '852', height: 'md:h-[88%]'},
+        { name: 'HHKB Type-S', height: 'md:h-[70%]' },
+        { name: 'Dropbear', height: 'md:h-[75%]' },
+        { name: '852', height: 'md:h-[88%]' },
     ]
-    
 
-    const [circleText, setCircleText] = useState(galleries[0].name)
+    const [tilt, setTilt] = useState({ x: 0, y: 0 })
+    const containerRef = useRef<HTMLDivElement | null>(null)
 
-    const checkCurrentDiv = () => {
-        const divs = document.querySelectorAll('.select-none')
-        const circleCenterY = window.innerHeight / 2
-
-        divs.forEach((div, index) => {
-            const divTop = div.getBoundingClientRect().top
-            const divBottom = div.getBoundingClientRect().bottom
-            const middleLine = divBottom - 1 // considering 1px divider
-
-            if (middleLine > circleCenterY && divTop < circleCenterY) {
-                setCircleText(galleries[index].name)
-            }
-        })
+    const handleMouseMove = (e: MouseEvent) => {
+        if (containerRef.current) {
+            const { left, top, width, height } =
+                containerRef.current.getBoundingClientRect()
+            const x = (e.clientX - (left + width / 2)) / (width / 2)
+            const y = -(e.clientY - (top + height / 2)) / (height / 2)
+            setTilt({ x, y })
+        }
     }
 
     useEffect(() => {
-        checkCurrentDiv();
-
-        window.addEventListener('scroll', checkCurrentDiv)
-
-        return () => {
-            window.removeEventListener('scroll', checkCurrentDiv)
+        const container = containerRef.current
+        if (container) {
+            container.addEventListener('mousemove', handleMouseMove)
+            return () =>
+                container.removeEventListener('mousemove', handleMouseMove)
         }
     }, [])
+
+    // const [circleText, setCircleText] = useState(galleries[0].name)
+
+    // const checkCurrentDiv = () => {
+    //     const divs = document.querySelectorAll('.select-none')
+    //     const circleCenterY = window.innerHeight / 2
+
+    //     divs.forEach((div, index) => {
+    //         const divTop = div.getBoundingClientRect().top
+    //         const divBottom = div.getBoundingClientRect().bottom
+    //         const middleLine = divBottom - 1 // considering 1px divider
+
+    //         if (middleLine > circleCenterY && divTop < circleCenterY) {
+    //             setCircleText(galleries[index].name)
+    //         }
+    //     })
+    // }
+
+    // useEffect(() => {
+    //     checkCurrentDiv();
+
+    //     window.addEventListener('scroll', checkCurrentDiv)
+
+    //     return () => {
+    //         window.removeEventListener('scroll', checkCurrentDiv)
+    //     }
+    // }, [])
 
     return (
         <main className={`flex min-h-screen flex-col flex-inline bg-main`}>
             <Head>
-                <title>Industrial Gallery</title>
+                <title>INDUSTRIAL GALLERY</title>
                 <meta
                     property={'og:title'}
-                    content="Industrial Gallery"
+                    content="INDUSTRIAL GALLERY"
                     key="title"
                 />
                 <meta
@@ -65,44 +87,98 @@ export default function Home() {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+
             <span
                 className={`inset-0 text-main text-xs md:text-sm p-1 w-44 md:w-52 text-center font-bold bg-accent whitespace-nowrap z-10 fixed sticky ${orbitron.className}`}
             >
                 INDUSTRIAL GALLERY
             </span>
-            <div className="fixed inset-0 flex items-center justify-center z-10 w-screen h-screen">
+            {/* 
+            <div className="fixed inset-0 flex items-center justify-center z-0 w-screen h-screen">
                 <div className="absolute w-[500px] h-[500px] border-2 border-main1 rounded-full"/>
                 <div className="absolute w-0.5 h-screen bg-main1 left-1/2 transform -translate-x-1/2"/>
                 <div className="absolute w-screen h-0.5 bg-main1 top-1/2 transform -translate-y-1/2"/>
                 <div className="absolute w-0.5 h-screen bg-main1 left-[15%]"/>
                 <div className="absolute w-0.5 h-screen bg-main1 right-[15%]"/>
+            </div> */}
 
-                <button className="bg-main backdrop-filter backdrop-blur-sm rounded-full w-44 h-44 flex items-center justify-center hover:bg-white">
-                    <span
-                        className={`text-black uppercase text-base text-center ${orbitron.className}`}
-                    >
-                        {circleText}
-                    </span>
-                </button>
+            <div
+                ref={containerRef}
+                className="select-none h-screen flex items-center justify-center"
+            >
+                <img
+                    src="/data/Tomo/front.jpg"
+                    alt="tomo"
+                    className="md:h-[60%] hover:opacity-80"
+                    style={{
+                        transform: `perspective(1000px) rotateY(${
+                            tilt.x * 2
+                        }deg) rotateX(${tilt.y * 2}deg)`,
+                        transition: 'transform 0.1s',
+                    }}
+                />
             </div>
 
-            <div className="divide-solid divide-y-[1px] divide-black">
-                {galleries.map((gallery, index) => (
-                    <div
-                        key={index}
-                        id={`gallery${index}`}
-                        className="select-none h-screen flex items-center justify-center"
-                    >
-                        <img
-                            src={`/data/${gallery.name.replace(
-                                /\s+/g,
-                                ''
-                            )}/front.jpg`}
-                            alt={gallery.name}
-                            className={`${gallery.height} hover:opacity-80`}
-                        />
+            <div className="absolute bottom-0 w-full flex justify-center mb-4">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="self-center stroke-accent"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M12 5l0 14"></path>
+                    <path d="M16 15l-4 4"></path>
+                    <path d="M8 15l4 4"></path>
+                </svg>
+            </div>
+
+            <div className="w-full mt-8 min-h-[30vh]">
+                <div className="uppercase w-full border-collapse">
+                    <div className="text-accent text-left">
+                        <div className='border-b flex flex-row'>
+                            <div className="px-4 py-2 w-[20%]">Date</div>
+                            <div className="px-4 py-2 w-[50%]">Name</div>
+                            <div className="px-4 py-2 w-[30%]">
+                                Designer
+                            </div>
+                        </div>
                     </div>
-                ))}
+                    <div className="text-left hover:bg-main1/20">
+                        <div className='border-b flex flex-row'>
+                            <div className="px-4 py-2 w-[20%]">TBA</div>
+                            <div className="px-4 py-2 w-[50%]">tomo</div>
+                            <div className="px-4 py-2 w-[30%]">monokei, tgr</div>
+                        </div>
+                    </div>
+                    <div className="text-left hover:bg-main1/20">
+                        <div className='border-b flex flex-row'>
+                            <div className="px-4 py-2 w-[20%]">TBA</div>
+                            <div className="px-4 py-2 w-[50%]">nayeon</div>
+                            <div className="px-4 py-2 w-[30%]">Abats' Keyboard Club</div>
+                        </div>
+                    </div>
+                    <div className="text-left hover:bg-main1/20">
+                        <div className='border-b flex flex-row'>
+                            <div className="px-4 py-2 w-[20%]">TBA</div>
+                            <div className="px-4 py-2 w-[50%]">iron165 v2</div>
+                            <div className="px-4 py-2 w-[30%]">Smith and Rune</div>
+                        </div>
+                    </div>
+                    <div className="text-left hover:bg-main1/20">
+                        <div className='border-b flex flex-row'>
+                            <div className="px-4 py-2 w-[20%]">TBA</div>
+                            <div className="px-4 py-2 w-[50%]">sbl</div>
+                            <div className="px-4 py-2 w-[30%]">DN works</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     )

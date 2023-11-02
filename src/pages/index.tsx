@@ -151,7 +151,7 @@ export default function Home() {
                         </div>
                     </div>
                     {keyboards.map((keyboard) => (
-                        <div className="text-left hover:bg-main1/20">
+                        <div key={keyboard.name} className="text-left hover:bg-main1/20">
                             <div className='flex flex-row'>
                                 <div className="px-4 py-2 w-[20%]">{keyboard.date}</div>
                                 <div className="px-4 py-2 w-[50%]">{keyboard.name}</div>

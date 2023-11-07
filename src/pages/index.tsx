@@ -109,24 +109,23 @@ export default function Home() {
                 <img
                     src="/data/Tomo/front.jpg"
                     alt="tomo"
-                    className="md:h-[60%]"
+                    className="md:h-[60%] max-w-[90%]"
                     style={{
                         transform: `perspective(1000px) rotateY(${
-                            tilt.x * 2
-                        }deg) rotateX(${tilt.y * 2}deg)`,
+                            tilt.x * 3
+                        }deg) rotateX(${tilt.y * 3}deg)`,
                         transition: 'transform 0.1s',
                     }}
                 />
             </div>
 
-            <div className="absolute bottom-4 w-full flex justify-center mb-4">
+            <div className="absolute bottom-4 w-full flex justify-center mb-4 stroke-2">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="self-center stroke-accent"
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
-                    stroke-width="2"
                     stroke="currentColor"
                     fill="none"
                     stroke-linecap="round"
@@ -140,12 +139,12 @@ export default function Home() {
             </div>
 
             <div className="w-full mt-8 min-h-[30vh]">
-                <div className="uppercase w-full border-collapse divide-y-[1px] divide-main1/50">
+                <div className="uppercase w-full border-collapse divide-y-[1px] divide-main1/50 text-xs sm:text-sm md:text-base lg:text-lg select-none">
                     <div className="text-accent text-left">
                         <div className='flex flex-row'>
                             <div className="px-4 py-2 w-[20%]">Date</div>
-                            <div className="px-4 py-2 w-[50%]">Name</div>
-                            <div className="px-4 py-2 w-[30%]">
+                            <div className="px-4 py-2 w-[30%]">Name</div>
+                            <div className="px-4 py-2 w-[50%]">
                                 Designer
                             </div>
                         </div>
@@ -154,8 +153,8 @@ export default function Home() {
                         <div key={keyboard.name} className="text-left hover:bg-main1/20">
                             <div className='flex flex-row'>
                                 <div className="px-4 py-2 w-[20%]">{keyboard.date}</div>
-                                <div className="px-4 py-2 w-[50%]">{keyboard.name}</div>
-                                <div className="px-4 py-2 w-[30%]">{keyboard.designer}</div>
+                                <div className="px-4 py-2 w-[30%]">{keyboard.name}</div>
+                                <div className="px-4 py-2 w-[50%]">{keyboard.designer}</div>
                             </div>
                         </div>
                     ))}

@@ -143,8 +143,8 @@ export default function Home() {
                     <div className="text-accent text-left">
                         <div className='flex flex-row'>
                             <div className="px-4 py-2 w-[20%]">Date</div>
-                            <div className="px-4 py-2 w-[30%]">Name</div>
-                            <div className="px-4 py-2 w-[50%]">
+                            <div className="px-4 py-2 w-[30%] md:w-[50%]">Name</div>
+                            <div className="px-4 py-2 w-[30%]">
                                 Designer
                             </div>
                         </div>
@@ -153,8 +153,8 @@ export default function Home() {
                         <div key={keyboard.name} className="text-left hover:bg-main1/20">
                             <div className='flex flex-row'>
                                 <div className="px-4 py-2 w-[20%]">{keyboard.date}</div>
-                                <div className="px-4 py-2 w-[30%]">{keyboard.name}</div>
-                                <div className="px-4 py-2 w-[50%]">{keyboard.designer}</div>
+                                <div className="px-4 py-2 w-[30%] md:w-[50%]">{keyboard.name}</div>
+                                <div className="px-4 py-2 w-[30%]">{keyboard.designer}</div>
                             </div>
                         </div>
                     ))}

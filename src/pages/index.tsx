@@ -21,11 +21,10 @@ interface KeyboardItem {
 export default function Home() {
     const [tilt, setTilt] = useState({ x: 0, y: 0 })
     const containerRef = useRef<HTMLDivElement | null>(null)
+    const tableRef = useRef<HTMLDivElement | null>(null)
     const [isImageVisible, setIsImageVisible] = useState(false)
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
     const [hoveredImageUrl, setHoveredImageUrl] = useState('')
-    const [rotationAngle, setRotationAngle] = useState(0);
-    const [prevCursorPosition, setPrevCursorPosition] = useState({ x: 0, y: 0 });
     const [imageSize, setImageSize] = useState({ width: 0, height: 0 })
     const imageRef = useRef<HTMLImageElement>(null)
 
@@ -44,23 +43,37 @@ export default function Home() {
                 containerRef.current.getBoundingClientRect()
             const x = (e.clientX - (left + width / 2)) / (width / 2)
             const y = -(e.clientY - (top + height / 2)) / (height / 2)
-            const speed = cursorPosition.x - e.clientX - left - imageSize.width / 2; // Simplified speed calculation based on x-axis movement
 
             setTilt({ x, y })
+        }
+        if (tableRef.current) {
+            const { left, top, width, height } = tableRef.current.getBoundingClientRect()
             setCursorPosition({
                 x: e.clientX - left - imageSize.width / 2,
                 y: e.clientY - top - imageSize.height / 2,
             })
-            setRotationAngle(speed / 10);
         }
+
     }
 
     useEffect(() => {
         const container = containerRef.current
+        const table = tableRef.current
+
         if (container) {
             container.addEventListener('mousemove', handleMouseMove)
-            return () =>
+        }
+        if (table) {
+            table.addEventListener('mousemove', handleMouseMove)
+        }
+        return () => {
+            if (table) {
+                table.removeEventListener('mousemove', handleMouseMove)
+            }
+            if (container) {
                 container.removeEventListener('mousemove', handleMouseMove)
+            }
+
         }
     }, [])
 
@@ -78,7 +91,7 @@ export default function Home() {
     return (
         <main
             className={`flex min-h-screen flex-col flex-inline bg-main`}
-            ref={containerRef}
+            ref={tableRef}
         >
             <Head>
                 <title>INDUSTRIAL GALLERY</title>
@@ -101,7 +114,8 @@ export default function Home() {
                 INDUSTRIAL GALLERY
             </span>
 
-            <div className="select-none h-screen flex items-center justify-center">
+            <div className="select-none h-screen flex items-center justify-center" 
+            ref={containerRef}>
                 <img
                     src="/data/Tomo/front.jpg"
                     alt="tomo"

@@ -49,8 +49,8 @@ export default function Home() {
         if (tableRef.current) {
             const { left, top, width, height } = tableRef.current.getBoundingClientRect()
             setCursorPosition({
-                x: e.clientX - left - imageSize.width / 2,
-                y: e.clientY - top - imageSize.height / 2,
+                x: e.clientX - left,
+                y: e.clientY - top,
             })
         }
 
@@ -79,7 +79,9 @@ export default function Home() {
 
     const handleMouseEnter = (keyboard: KeyboardItem) => {
         if (keyboard.date.toLowerCase() !== 'tbd') {
-            setHoveredImageUrl(keyboard.name)
+            // remove whitespace from name
+            const name = keyboard.name.replace(/\s/g, '')
+            setHoveredImageUrl(name)
             setIsImageVisible(true)
         }
     }
@@ -192,7 +194,7 @@ export default function Home() {
                     <img
                         ref={imageRef}
                         src={`/data/${hoveredImageUrl}/front.jpg`}
-                        className={`absolute -z-10 transition-opacity duration-500 ease-in-out ${isImageVisible ? 'opacity-100' : 'opacity-0'} max-w-[30vw] max-h-[30vh]`}
+                        className={`absolute -z-10 -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500 ease-in-out ${isImageVisible ? 'opacity-100' : 'opacity-0'} max-w-[30vw] max-h-[30vh]`}
                         style={{
                             left: cursorPosition.x,
                             top: cursorPosition.y,

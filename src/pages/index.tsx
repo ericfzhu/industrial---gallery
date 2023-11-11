@@ -2,6 +2,7 @@ import { Orbitron } from 'next/font/google'
 import Head from 'next/head'
 import { useEffect, useRef, useState } from 'react'
 import keyboards from '@/components/keyboards.json'
+import Link from 'next/link'
 // sort by date and then name
 keyboards.sort((a, b) => (a.name.toLowerCase() < b.name.toLowerCase() ? 1 : -1))
 keyboards.sort((a, b) => (a.date > b.date ? 1 : -1))
@@ -79,7 +80,7 @@ export default function Home() {
 
     return (
         <main
-        className="overflow-hidden flex min-h-screen flex-col flex-inline bg-main max-w-full"
+            className="overflow-hidden flex min-h-screen flex-col flex-inline bg-main max-w-full"
             ref={tableRef}
         >
             <Head>
@@ -161,29 +162,43 @@ export default function Home() {
                             key={keyboard.name}
                             className={`text-left hover:bg-main1/20 z-10 ${
                                 keyboard.date === 'tbd'
-                                    ? 'text-slate-500'
+                                    ? 'text-slate-500 disabled'
                                     : 'hover:text-accent'
                             }`}
                             onMouseEnter={() => handleMouseEnter(keyboard)}
                             onMouseLeave={handleMouseLeave}
                         >
-                            <div className="flex flex-row">
-                                <div className="px-4 py-2 w-[20%]">
-                                    {keyboard.date}
+                            <Link
+                                href={`/keyboards/${keyboard.name.replace(
+                                    /\s/g,
+                                    ''
+                                )}`}
+                                className={`${
+                                    keyboard.date === 'tbd'
+                                        ? 'pointer-events-none'
+                                        : ''
+                                }`}
+                            >
+                                <div className="flex flex-row">
+                                    <div className="px-4 py-2 w-[20%]">
+                                        {keyboard.date}
+                                    </div>
+                                    <div className="px-4 py-2 w-[30%] md:w-[50%]">
+                                        {keyboard.name}
+                                    </div>
+                                    <div className="px-4 py-2 w-[50%] md:w-[30%]">
+                                        {keyboard.designer}
+                                    </div>
                                 </div>
-                                <div className="px-4 py-2 w-[30%] md:w-[50%]">
-                                    {keyboard.name}
-                                </div>
-                                <div className="px-4 py-2 w-[50%] md:w-[30%]">
-                                    {keyboard.designer}
-                                </div>
-                            </div>
+                            </Link>
                         </div>
                     ))}
                     <img
                         ref={imageRef}
                         src={`/data/${hoveredImageUrl}/front.jpg`}
-                        className={`fixed transform -translate-x-1/2 -translate-y-1/2 max-w-[30vw] max-h-[30vh] transition-opacity duration-500 ease-in-out ${isImageVisible ? 'opacity-100' : 'opacity-0'} pointer-events-none -z-10`}
+                        className={`fixed transform -translate-x-1/2 -translate-y-1/2 max-w-[30vw] max-h-[30vh] transition-opacity duration-500 ease-in-out ${
+                            isImageVisible ? 'opacity-100' : 'opacity-0'
+                        } pointer-events-none -z-10`}
                         style={{
                             left: cursorPosition.x,
                             top: cursorPosition.y,

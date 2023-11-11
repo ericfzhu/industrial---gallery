@@ -25,17 +25,7 @@ export default function Home() {
     const [isImageVisible, setIsImageVisible] = useState(false)
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
     const [hoveredImageUrl, setHoveredImageUrl] = useState('')
-    const [imageSize, setImageSize] = useState({ width: 0, height: 0 })
     const imageRef = useRef<HTMLImageElement>(null)
-
-    useEffect(() => {
-        if (imageRef.current) {
-            setImageSize({
-                width: imageRef.current.clientWidth,
-                height: imageRef.current.clientHeight,
-            })
-        }
-    }, [isImageVisible])
 
     const handleMouseMove = (e: MouseEvent) => {
         if (containerRef.current) {
@@ -47,13 +37,11 @@ export default function Home() {
             setTilt({ x, y })
         }
         if (tableRef.current) {
-            const { left, top, width, height } = tableRef.current.getBoundingClientRect()
             setCursorPosition({
-                x: e.clientX - left,
-                y: e.clientY - top,
+                x: e.clientX,
+                y: e.clientY,
             })
         }
-
     }
 
     useEffect(() => {
@@ -73,7 +61,6 @@ export default function Home() {
             if (container) {
                 container.removeEventListener('mousemove', handleMouseMove)
             }
-
         }
     }, [])
 
@@ -92,7 +79,7 @@ export default function Home() {
 
     return (
         <main
-            className={`flex min-h-screen flex-col flex-inline bg-main`}
+        className="overflow-hidden flex min-h-screen flex-col flex-inline bg-main max-w-full"
             ref={tableRef}
         >
             <Head>
@@ -110,14 +97,16 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <span
-                className={`inset-0 text-main text-xs md:text-sm p-1 w-44 md:w-52 text-center font-bold bg-accent whitespace-nowrap z-10 fixed sticky ${orbitron.className}`}
+            <h1
+                className={`top-0 text-main text-xs md:text-sm p-1 w-44 md:w-52 text-center font-bold bg-accent whitespace-nowrap z-10 sticky ${orbitron.className}`}
             >
                 INDUSTRIAL GALLERY
-            </span>
+            </h1>
 
-            <div className="select-none h-screen flex items-center justify-center" 
-            ref={containerRef}>
+            <div
+                className="select-none h-screen flex items-center justify-center"
+                ref={containerRef}
+            >
                 <img
                     src="/data/Tomo/front.jpg"
                     alt="tomo"
@@ -154,7 +143,7 @@ export default function Home() {
                 </div>
             </div>
 
-            <div className="w-full mt-8 min-h-[30vh] z-10">
+            <div className="max-w-full mt-8 min-h-[30vh] z-10">
                 <div className="uppercase z-0 w-full border-collapse divide-y-[1px] divide-main1/50 text-xs sm:text-sm md:text-base lg:text-lg select-none">
                     <div className="text-accent text-left">
                         <div className="flex flex-row">
@@ -194,7 +183,7 @@ export default function Home() {
                     <img
                         ref={imageRef}
                         src={`/data/${hoveredImageUrl}/front.jpg`}
-                        className={`absolute -z-10 -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500 ease-in-out ${isImageVisible ? 'opacity-100' : 'opacity-0'} max-w-[30vw] max-h-[30vh]`}
+                        className={`fixed transform -translate-x-1/2 -translate-y-1/2 max-w-[30vw] max-h-[30vh] transition-opacity duration-500 ease-in-out ${isImageVisible ? 'opacity-100' : 'opacity-0'} pointer-events-none -z-10`}
                         style={{
                             left: cursorPosition.x,
                             top: cursorPosition.y,

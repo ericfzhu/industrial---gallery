@@ -99,18 +99,18 @@ export default function Home() {
             </Head>
 
             <h1
-                className={`top-0 text-main text-xs md:text-sm p-1 w-44 md:w-52 text-center font-bold bg-accent whitespace-nowrap z-10 sticky ${orbitron.className}`}
+                className={`absolute top-0 text-main text-xs md:text-sm p-1 w-44 md:w-52 text-center font-bold bg-accent whitespace-nowrap z-10 sticky ${orbitron.className}`}
             >
                 INDUSTRIAL GALLERY
             </h1>
 
             <div
-                className="select-none h-screen flex items-center justify-center"
+                className="select-none flex-grow flex items-center justify-center"
                 ref={containerRef}
             >
                 <img
-                    src="/data/Tomo/front.jpg"
-                    alt="tomo"
+                    src="/favicon.ico"
+                    alt="IG"
                     className="md:h-[60%] max-w-[90%]"
                     style={{
                         transform: `perspective(1000px) rotateY(${
@@ -120,7 +120,7 @@ export default function Home() {
                     }}
                 />
 
-                <div className="absolute bottom-4 w-full flex justify-center mb-4 stroke-2">
+                {/* <div className="absolute bottom-4 w-full flex justify-center mb-4 stroke-2">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="self-center stroke-accent"
@@ -141,10 +141,10 @@ export default function Home() {
                         <path d="M16 15l-4 4"></path>
                         <path d="M8 15l4 4"></path>
                     </svg>
-                </div>
+                </div> */}
             </div>
 
-            <div className="max-w-full mt-8 min-h-[30vh] z-10">
+            {/* <div className="max-w-full mt-8 min-h-[30vh] z-10">
                 <div className="uppercase z-0 w-full border-collapse divide-y-[1px] divide-main1/50 text-xs sm:text-sm md:text-base lg:text-lg select-none">
                     <div className="text-accent text-left">
                         <div className="flex flex-row">
@@ -206,7 +206,7 @@ export default function Home() {
                         alt="Hovered"
                     />
                 </div>
-            </div>
+            </div> */}
         </main>
     )
 }

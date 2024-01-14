@@ -80,7 +80,7 @@ export default function Home() {
 
     return (
         <main
-            className="overflow-hidden flex min-h-screen flex-col flex-inline bg-main max-w-full"
+            className="overflow-hidden flex min-h-screen flex-col flex-inline bg-main max-w-full relative"
             ref={tableRef}
         >
             <Head>
@@ -105,17 +105,17 @@ export default function Home() {
             </h1>
 
             <div
-                className="select-none flex-grow flex items-center justify-center"
+                className="select-none flex-grow flex items-center justify-center top-0 absolute w-full h-full"
                 ref={containerRef}
             >
                 <img
                     src="/favicon.ico"
                     alt="IG"
-                    className="md:h-[60%] max-w-[90%]"
+                    className="md:h-[40%] max-w-[80%]"
                     style={{
                         transform: `perspective(1000px) rotateY(${
-                            tilt.x * 3
-                        }deg) rotateX(${tilt.y * 3}deg)`,
+                            tilt.x * 10
+                        }deg) rotateX(${tilt.y * 10}deg)`,
                         transition: 'transform 0.1s',
                     }}
                 />

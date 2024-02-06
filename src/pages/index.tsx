@@ -1,4 +1,4 @@
-import { Orbitron } from 'next/font/google'
+import { Courier_Prime } from 'next/font/google'
 import Head from 'next/head'
 import { useEffect, useRef, useState } from 'react'
 import keyboards from '@/components/keyboards.json'
@@ -7,12 +7,11 @@ import Link from 'next/link'
 keyboards.sort((a, b) => (a.name.toLowerCase() < b.name.toLowerCase() ? 1 : -1))
 keyboards.sort((a, b) => (a.date > b.date ? 1 : -1))
 
-const orbitron = Orbitron({
-    weight: '700',
-    display: 'swap',
+export const courierPrime = Courier_Prime({
     subsets: ['latin'],
+    weight: '400',
+    preload: true,
 })
-
 interface KeyboardItem {
     name: string
     date: string
@@ -24,7 +23,7 @@ export default function Home() {
     const containerRef = useRef<HTMLDivElement | null>(null)
     const tableRef = useRef<HTMLDivElement | null>(null)
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
-    
+
     const handleMouseMove = (e: MouseEvent) => {
         if (containerRef.current) {
             const { left, top, width, height } =
@@ -64,7 +63,7 @@ export default function Home() {
 
     return (
         <main
-            className="overflow-hidden flex min-h-screen flex-col flex-inline bg-main max-w-full relative"
+            className={`overflow-hidden flex min-h-screen flex-col flex-inline bg-main max-w-full relative items-center ${courierPrime.className}`}
             ref={tableRef}
         >
             <Head>
@@ -128,8 +127,8 @@ export default function Home() {
                 </div>
             </div>
 
-            <div className="max-w-full mt-8 min-h-[30vh] z-10">
-                <div className="text-accent text-left border-y border-main1 uppercase">
+            <div className="max-w-5xl w-full mt-8 mb-[10%] z-10 border border-main1">
+                <div className="text-accent text-left border-b border-main1 uppercase">
                         <div className="flex flex-row">
                             <div className="px-4 py-2 w-[20%] border-r border-main1">Date</div>
                             <div className="px-4 py-2 w-[30%] md:w-[50%] border-r border-main1">
